@@ -1,7 +1,7 @@
 import React from 'react';
 import fn from "../functions";
 
-
+const baseUrl = fn.apiBaseUrl();
 class Popup extends React.Component {
     constructor(props) {
         super();
@@ -35,7 +35,7 @@ class Popup extends React.Component {
 
     buyItem = (user) => {
         var token = fn.getCurrentToken();
-        fetch("http://localhost:8888/trade/buy", {
+        fetch(baseUrl + "/trade/buy", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -52,10 +52,10 @@ class Popup extends React.Component {
         }).then(res => {
             return res.json();
         }).then(res => {
-            if(res.status === 200){
+            if (res.status === 200) {
                 console.log("Purchase made.")
                 this.props.history.push("/myinventory");
-            }else {
+            } else {
                 alert(res.msg);
             }
         }).catch(err => {
@@ -64,7 +64,7 @@ class Popup extends React.Component {
     }
     sellItem = (user) => {
         var token = fn.getCurrentToken();
-        fetch("http://localhost:8888/trade/sell", {
+        fetch(baseUrl + "/trade/sell", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',

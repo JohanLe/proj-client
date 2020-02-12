@@ -11,8 +11,10 @@ import login from "./components/subpages/login";
 import myInventory from "./components/subpages/myInventory";
 import deposit from "./components/subpages/deposit";
 import graph from "./components/subpages/graph";
+import fn from "./functions";
 
-const socket = io.connect('http://localhost:8888');
+const baseUrl = fn.apiBaseUrl();
+const socket = io.connect(baseUrl);
 var currentPrices = [];
 socket.on('connect', function (prices) {
   console.info("Connected");

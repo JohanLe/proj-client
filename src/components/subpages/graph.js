@@ -1,5 +1,5 @@
 import React from "react";
-//import fn from "../../functions";
+
 
 import Rickshaw from "rickshaw";
 
@@ -20,7 +20,7 @@ class Graph extends React.Component {
         var i = 0;
         data.forEach((set) => {
             console.log(set);
-            graph1.push({ "x": i, "y": set[0]["price"]})
+            graph1.push({ "x": i, "y": set[0]["price"] })
             graph2.push({ "x": i, "y": set[1]["price"] })
             graph3.push({ "x": i, "y": set[2]["price"] })
             i++;
@@ -31,13 +31,11 @@ class Graph extends React.Component {
 
 
     componentDidUpdate() {
-
-
         var graph1 = new Rickshaw.Graph({
             element: document.querySelector('#graph1'),
             height: 100,
             width: 500,
-            min: 5,
+            min: 4,
             series: [
                 {
                     color: 'steelblue',
@@ -49,7 +47,7 @@ class Graph extends React.Component {
             element: document.querySelector('#graph2'),
             height: 150,
             width: 500,
-            min: 5,
+            min: 4,
             unstack: 'true',
             series: [
                 {
@@ -62,7 +60,7 @@ class Graph extends React.Component {
             element: document.querySelector('#graph3'),
             height: 150,
             width: 500,
-            min: 50,
+            min: 40,
             series: [
                 {
                     color: 'blue',
@@ -77,9 +75,9 @@ class Graph extends React.Component {
     }
     componentDidMount() {
 
-        if(localStorage.getItem("prices") != ""){
+        if (localStorage.getItem("prices") != "") {
             var data = JSON.parse(localStorage.getItem("prices"));
-        
+
             this.setState({ prices: JSON.parse(localStorage.getItem("prices")) })
             this.setState({ graphdata: this.makeGraphData(data) });
         }

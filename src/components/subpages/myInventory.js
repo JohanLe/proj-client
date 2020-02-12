@@ -3,6 +3,8 @@ import fn from "../../functions";
 import Popup from '../popup';
 import UserInfo from "../userInfo";
 
+const baseUrl = fn.apiBaseUrl();
+
 class MyInventory extends React.Component {
     constructor(props) {
         super(props);
@@ -30,7 +32,7 @@ class MyInventory extends React.Component {
     componentDidMount() {
         var user = fn.getCurrentUser();
         this.setState({ "user": user })
-        const testUrl = "http://localhost:8888/products/myinventory/" + user.id;
+        const testUrl = baseUrl + "/products/myinventory/" + user.id;
         fetch(testUrl)
             .then(results => {
                 return results.json();

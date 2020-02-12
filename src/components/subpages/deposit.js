@@ -1,6 +1,7 @@
 import React from "react";
 import fn from "../../functions";
 
+const baseUrl = fn.apiBaseUrl();
 class Deposit extends React.Component {
     constructor(props) {
         super(props);
@@ -25,7 +26,7 @@ class Deposit extends React.Component {
         var user = fn.getCurrentUser();
         var token = fn.getCurrentToken();
 
-        fetch("http://localhost:8888/trade/deposit", {
+        fetch(baseUrl + "/trade/deposit", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -41,33 +42,33 @@ class Deposit extends React.Component {
             console.log("DEPOST!");
             return res.json();
         })
-        .then(res => {
-            if(res.status === 200){
-                console.log("new coins: " + res.coins);
-                var newAmount = parseInt(user.coins) + parseInt(this.state.coins);
-                user.coins = newAmount;
-                fn.updateCurrentUser(user);
-                this.props.history.push("/myinventory");
-            }else {
-                alert(res.msg);
-            }
+            .then(res => {
+                if (res.status === 200) {
+                    console.log("new coins: " + res.coins);
+                    var newAmount = parseInt(user.coins) + parseInt(this.state.coins);
+                    user.coins = newAmount;
+                    fn.updateCurrentUser(user);
+                    this.props.history.push("/myinventory");
+                } else {
+                    alert(res.msg);
+                }
 
-        })
-        .catch(err => {
+            })
+            .catch(err => {
                 console.log(err);
-        })
+            })
     }
     render() {
         return (
             <div className="main-content">
-                
+
                 <form className="pretty-form">
-                <h4> Deposit coins here:</h4>
-                <label className="form-label">
-                    Amount:
+                    <h4> Deposit coins here:</h4>
+                    <label className="form-label">
+                        Amount:
                     <input type="number" name="coins" onChange={this.handleChange} />
-                </label>
-                    
+                    </label>
+
 
                     <input className="form-btn" type="Submit" onClick={this.handleSubmit} />
                 </form>

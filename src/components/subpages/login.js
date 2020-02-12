@@ -1,6 +1,8 @@
 import React from "react";
 import fn from "../../functions";
 
+const baseUrl = fn.apiBaseUrl();
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +17,7 @@ class Login extends React.Component {
         fn.updateCurrentToken("");
         fn.updateCurrentUser({});
 
-        fetch("http://localhost:8888/auth/login", {
+        fetch(baseUrl + "/auth/login", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
@@ -62,17 +64,17 @@ class Login extends React.Component {
                     <label className="form-label">
                         Email
                     <input
-                            
+
                             name="email"
                             type="email"
                             onChange={this.handleOnChange}
                         />
                     </label>
 
-                    <label className="form-label"> 
+                    <label className="form-label">
                         Password
                     <input
-                            
+
                             name="password"
                             type="password"
                             onChange={this.handleOnChange}

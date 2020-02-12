@@ -37,6 +37,11 @@ const functions = {
     userLoggOut() {
         this.updateCurrentUser([{}]);
         this.updateCurrentToken(null);
+    },
+    apiBaseUrl(){
+         var local = "http://localhost:8888";
+        var projectUrl = "https://proj-api.johanledel.me";
+        return local;
     }
 }
 

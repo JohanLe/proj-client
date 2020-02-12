@@ -4,6 +4,7 @@ import UserInfo from "../userInfo";
 
 import fn from "../../functions";
 
+const baseUrl = fn.apiBaseUrl();
 
 
 class AllProducts extends React.Component {
@@ -81,7 +82,7 @@ class AllProducts extends React.Component {
     }
 
     componentDidMount() {
-        const testUrl = "http://localhost:8888/products/all";
+        const testUrl = baseUrl + "/products/all";
         fetch(testUrl, {
             method: "GET",
             headers: {
@@ -108,7 +109,7 @@ class AllProducts extends React.Component {
         return (
             <div className="main-content">
                 {fn.userLoggedin() ?
-                    <UserInfo className="user-info-container"  />
+                    <UserInfo className="user-info-container" />
                     : null
                 }
                 <div className="product-list">

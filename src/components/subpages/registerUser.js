@@ -1,5 +1,6 @@
 import React from 'react';
-
+import fn from "../../functions";
+const baseUrl = fn.apiBaseUrl();
 class RegisterUser extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +15,7 @@ class RegisterUser extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch("http://localhost:8888/auth/register", {
+        fetch(baseUrl + "/auth/register", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
